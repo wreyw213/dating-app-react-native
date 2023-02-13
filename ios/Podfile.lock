@@ -430,6 +430,8 @@ PODS:
     - glog
   - react-native-blob-util (0.17.1):
     - React-Core
+  - react-native-insta-story (1.1.8):
+    - React
   - react-native-maps (1.4.0):
     - React-Core
   - react-native-netinfo (9.3.7):
@@ -633,6 +635,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-blob-util (from `../node_modules/react-native-blob-util`)
+  - react-native-insta-story (from `../node_modules/react-native-insta-story`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
@@ -743,6 +746,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-blob-util:
     :path: "../node_modules/react-native-blob-util"
+  react-native-insta-story:
+    :path: "../node_modules/react-native-insta-story"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
   react-native-netinfo:
@@ -853,6 +858,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 60769e5a0a6d4b32294a2456077f59d0266f9a8b
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
   react-native-blob-util: 4949dcc0dd5ee25fcb5abe0687f67fa3d5cdf05a
+  react-native-insta-story: c06a8c91c0341a75070dca5c1cd9f27515133e02
   react-native-maps: 7135a33610202745d08fdf151ce6b0d01952a99c
   react-native-netinfo: 2517ad504b3d303e90d7a431b0fcaef76d207983
   react-native-pager-view: 54bed894cecebe28cede54c01038d9d1e122de43
@@ -887,6 +893,6 @@ SPEC CHECKSUMS:
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: a9eab387ed5415268f33e26f0300183f1c9447a0
+PODFILE CHECKSUM: b53b28b340627ed0580e99cd7e9af7fc64570854
 
 COCOAPODS: 1.11.3

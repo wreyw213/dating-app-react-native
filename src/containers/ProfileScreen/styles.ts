@@ -10,6 +10,7 @@ const styles = (theme: Theme) => StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: theme.BG_PRIMARY,
+        marginHorizontal: DimensionsValue.VALUE_10
     },
     cell: {
         width: cellWidth,

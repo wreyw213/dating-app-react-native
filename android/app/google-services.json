@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "410446085888",
+    "project_id": "halogen-antenna-372305",
+    "storage_bucket": "halogen-antenna-372305.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410446085888:android:debd0b21057a3c520cfde5",
+        "android_client_info": {
+          "package_name": "com.typescriptdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410446085888-nea4b8o5uobqe5u140tvndn7123so652.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.typescriptdemo",
+            "certificate_hash": "8f2d03aced1c1915e355307b3935d9f3510e498e"
+          }
+        },
+        {
+          "client_id": "410446085888-9uou1tqlt926ntt74r6lj431ka55qeqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBcFNG_0P97xByUTQU8hJZVbs0JbCDsvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410446085888-9uou1tqlt926ntt74r6lj431ka55qeqk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "410446085888-rg3rmo2qle7o764htulsaftjqqckilfc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.demo.ios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

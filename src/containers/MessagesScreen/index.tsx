@@ -24,65 +24,66 @@ const MessagesScreen: React.FC<Props> = ({ navigation }) => {
   const [theme] = useTheme();
 
   const [searchValue, setSearchValue] = useState('');
-  
-  
 
-    return (
-      <SafeAreaView style={{flex: 1}}>
-        <Header
-          title="Messages"
-          titleStyle={{
-            fontWeight: '600',
-            marginHorizontal: DimensionsValue.VALUE_10,
-          }}
-        />
-        <TextInputField
-          containerStyle={{minHeight: DimensionsValue.VALUE_46}}
-          value={searchValue}
-          onChangeText={(value) => setSearchValue(value)}
-          renderLeftIcon={() => (
-            <Image source={images.IC_SEARCH} style={styles(theme).imageSearch} />
-          )}
-          placeholder={'Search'}
-          
-        />
-        <FlatList
-          data={Demo}
-          ListHeaderComponent={<Activities theme={theme}/>}
-          renderItem={({item, index}) => (
-            <ItemMessage
-              key={index}
-              item={item}
-              handlePressItem={(item: any) =>
-                navigation.navigate(ScreenConstants.PROFILE_SCREEN)
-              }
-            />
-          )}
-        />
-      </SafeAreaView>
-    );
+  return null
+
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <Header
+        title="Messages"
+        titleStyle={{
+          fontWeight: '600',
+          marginHorizontal: DimensionsValue.VALUE_10,
+        }}
+      />
+      <TextInputField
+        containerStyle={{ minHeight: DimensionsValue.VALUE_46 }}
+        value={searchValue}
+        onChangeText={(value) => setSearchValue(value)}
+        renderLeftIcon={() => (
+          <Image source={images.IC_SEARCH} style={styles(theme).imageSearch} />
+        )}
+        placeholder={'Search'}
+
+      />
+      <FlatList
+        data={Demo}
+        ListHeaderComponent={<Activities theme={theme} />}
+        renderItem={({ item, index }) => (
+          <ItemMessage
+            key={index}
+            item={item}
+            handlePressItem={(item: any) =>
+              navigation.navigate(ScreenConstants.PROFILE_SCREEN)
+            }
+          />
+        )}
+      />
+    </SafeAreaView>
+  );
 }
 
 export default MessagesScreen
 
 type ActivitiesProps = {
-  theme:Theme
+  theme: Theme
 }
-const Activities = ({theme}: ActivitiesProps) => (
+const Activities = ({ theme }: ActivitiesProps) => (
   <View style={styles(theme).viewHeader}>
     <Text style={styles(theme).textActivities}>Activities</Text>
     <FlatList
-      data={[{id: -1, name: 'You'}, ...Demo]}
+      data={[{ id: -1, name: 'You' }, ...Demo]}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
-      renderItem={({item, index}) => (
+      renderItem={({ item, index }) => (
         <Activity
           handlePressItem={() => console.log('rgejhgrhej')}
           item={item}
           onPressCreateStory={() => console.log('create story')}
         />
       )}
-      contentContainerStyle={{paddingLeft: DimensionsValue.VALUE_10}}
+      contentContainerStyle={{ paddingLeft: DimensionsValue.VALUE_10 }}
     />
     <Text style={styles(theme).textMessages}>Messages</Text>
   </View>

@@ -8,7 +8,7 @@ export default {
 
   IC_HEART: require('./ic_heart.png'),
   IC_HEART_OUTLINE: require('./ic_heart_outline.png'),
-  IC_HEART_SMALL:require('./ic_heart_small.png'),
+  IC_HEART_SMALL: require('./ic_heart_small.png'),
   IC_SHOW_PASWORD: require('./ic_show_password.png'),
   IC_HIDE_PASWORD: require('./ic_hide_password.png'),
 
@@ -33,4 +33,6 @@ export default {
   IC_BACK: require('./ic_btn_back.png'),
   IC_FILTER: require('./ic_btn_filter.png'),
   IC_PLUS_LIGHT: require('./ic_plus_light.png'),
+
+  DEFAULT_AVATAR: require('./no_avatar.png')
 };

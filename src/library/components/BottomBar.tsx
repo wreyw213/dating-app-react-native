@@ -1,4 +1,4 @@
-import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {
   TouchableOpacity,
@@ -7,10 +7,10 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-import {AppConstants, Colors} from '../constants';
+import { AppConstants, Colors } from '../constants';
 import useIsKeyboardShown from '../hooks/useIsKeyboardShown';
 import useTheme from '../hooks/useTheme';
-import {Theme} from '../types';
+import { Theme } from '../types';
 import DimensionsValue from '../utils/DimensionsValue';
 
 const BottomBar = (Props: BottomTabBarProps) => {
@@ -29,7 +29,7 @@ const BottomBar = (Props: BottomTabBarProps) => {
   return render();
 };
 
-const RenderBottomBar = ({state, navigation}: BottomTabBarProps) => {
+const RenderBottomBar = ({ state, navigation }: BottomTabBarProps) => {
   const [theme] = useTheme();
   return (
     <SafeAreaView style={styles(theme).viewContainer}>

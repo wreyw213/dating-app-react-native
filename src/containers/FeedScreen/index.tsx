@@ -134,7 +134,7 @@ const FeedScreen: React.FC<Props> = ({ navigation, topTabNavigation }) => {
 
 	// const viewabilityConfigCallbackPairs = useRef([{ viewabilityConfig, onViewableItemsChanged }])
 
-	return <View style={{ flex: 1, justifyContent:''}}>
+	return <View style={{ flex: 1 }}>
 
 		<FlatList
 			ref={flatListRef}
