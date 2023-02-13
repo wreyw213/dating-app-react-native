@@ -4,7 +4,7 @@ import Modal from "react-native-modalbox";
 import StoryListItem from "./StoryListItem";
 import StoryCircleListView from "./StoryCircleListView";
 import { isNullOrWhitespace } from "./helpers/ValidationHelpers";
-import type { IUserStory } from "./interfaces/IUserStory";
+import type { IUserStory, IUserStoryItem } from "./interfaces/IUserStory";
 import AndroidCubeEffect from "./components/AndroidCubeEffect";
 import CubeNavigationHorizontal from "./components/CubeNavigationHorizontal";
 import { TextStyle } from "react-native";
@@ -45,11 +45,11 @@ export const Story = (props: Props) => {
     const [dataState, setDataState] = useState(data);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
-    const [selectedData, setSelectedData] = useState([]);
+    const [selectedData, setSelectedData] = useState<Array<IUserStory>>([]);
     const cube = useRef();
 
     // Component Functions
-    const _handleStoryItemPress = (item, index) => {
+    const _handleStoryItemPress = (item: IUserStoryItem, index: number) => {
         const newData = dataState.slice(index);
         if (onStart) {
             onStart(item)
@@ -79,12 +79,13 @@ export const Story = (props: Props) => {
         }
     }
 
-    function onStoryFinish(state) {
+    function onStoryFinish(state: string) {
         if (!isNullOrWhitespace(state)) {
             if (state == "next") {
                 const newPage = currentPage + 1;
                 if (newPage < selectedData.length) {
                     setCurrentPage(newPage);
+                    //@ts-ignore
                     cube?.current?.scrollTo(newPage);
                 } else {
                     setIsModalOpen(false);
@@ -100,6 +101,7 @@ export const Story = (props: Props) => {
                     setCurrentPage(0);
                 } else {
                     setCurrentPage(newPage);
+                    //@ts-ignore
                     cube?.current?.scrollTo(newPage);
                 }
             }
@@ -130,8 +132,9 @@ export const Story = (props: Props) => {
         if (Platform.OS == 'ios') {
             return (
                 <CubeNavigationHorizontal
+                    //@ts-ignore
                     ref={cube}
-                    callBackAfterSwipe={(x) => {
+                    callBackAfterSwipe={(x: any) => {
                         if (x != currentPage) {
                             setCurrentPage(parseInt(x));
                         }
@@ -142,8 +145,9 @@ export const Story = (props: Props) => {
             )
         } else {
             return (<AndroidCubeEffect
+                //@ts-ignore
                 ref={cube}
-                callBackAfterSwipe={(x) => {
+                callBackAfterSwipe={(x: any) => {
                     if (x != currentPage) {
                         setCurrentPage(parseInt(x));
                     }

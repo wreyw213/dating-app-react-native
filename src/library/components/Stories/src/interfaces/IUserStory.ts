@@ -11,4 +11,6 @@ export interface IUserStoryItem {
     story_image: string,
     onPress?: any,
     swipeText?: string,
+    is_video?: boolean,
+    seen?: boolean
 }

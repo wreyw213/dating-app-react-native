@@ -136,12 +136,12 @@ type ExtraVideoProps = {
     source: string
 }
 
-const VideoPlayerForwardingRef = React.forwardRef<any, VideoProps & ExtraVideoProps>((props, ref) => (
+const CustomVideoPlayer = React.forwardRef<any, VideoProps & ExtraVideoProps>((props, ref) => (
     <VideoPlayer {...props} forwardedRef={ref} />
 ));
 
 
-export default VideoPlayerForwardingRef
+export default CustomVideoPlayer
 
 const styles = StyleSheet.create({
     loadingContainer: {

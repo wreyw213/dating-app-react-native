@@ -16,8 +16,12 @@ import type { IUserStoryItem } from "./interfaces/IUserStory";
 import { usePrevious } from "./helpers/StateHelpers";
 import { isNullOrWhitespace } from "./helpers/ValidationHelpers";
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Video from 'react-native-video';
+import FastImage from 'react-native-fast-image';
 
 const { width, height } = Dimensions.get('window');
+
+type resizeMode = "stretch" | "contain" | "cover"
 
 type Props = {
     profileName: string,
@@ -31,21 +35,27 @@ type Props = {
     customCloseComponent?: any,
     stories: IUserStoryItem[],
     currentPage: number,
-    index: number
+    index: number,
 };
 
 export const StoryListItem = (props: Props) => {
     const stories = props.stories;
 
+    const { duration } = props
+
     const [load, setLoad] = useState(true);
     const [pressed, setPressed] = useState(false);
+    const [videoDeuartion, setVideoDuration] = useState(duration)
+    const [resizeMode, setResizeMode] = useState<resizeMode>('cover')
+
     const [content, setContent] = useState(
         stories.map((x) => {
             return {
                 image: x.story_image,
                 onPress: x.onPress,
                 swipeText: x.swipeText,
-                finish: 0
+                finish: 0,
+                isVideo: x.is_video
             }
         }));
 
@@ -93,16 +103,17 @@ export const StoryListItem = (props: Props) => {
 
     }, [current]);
 
-    function start() {
+    function start(totalTime = duration) {
         setLoad(false);
         progress.setValue(0);
-        startAnimation();
+        startAnimation(totalTime);
     }
 
-    function startAnimation() {
+    function startAnimation(totalTime = videoDeuartion) {
+
         Animated.timing(progress, {
             toValue: 1,
-            duration: props.duration,
+            duration: totalTime ? totalTime : props.duration,
             useNativeDriver: false
         }).start(({ finished }) => {
             if (finished) {
@@ -185,10 +196,37 @@ export const StoryListItem = (props: Props) => {
         >
             <SafeAreaView>
                 <View style={styles.backgroundContainer}>
-                    <Image onLoadEnd={() => start()}
-                        source={{ uri: content[current].image }}
-                        style={styles.image}
-                    />
+                    {content[current].isVideo && props.currentPage == props.index ?
+                        <Video
+                            key={`${props.index}${current}`}
+                            source={{ uri: content[current].image }}
+                            paused={false}
+                            style={styles.image}
+                            resizeMode={resizeMode}
+                            onBuffer={(data) => {
+                                if (data.isBuffering) progress.stopAnimation()
+                                else startAnimation()
+                            }}
+                            onLoad={(data) => {
+                                const { naturalSize } = data
+
+                                if (naturalSize.width < width) {
+                                    setResizeMode("cover")
+                                } else {
+                                    setResizeMode("cover")
+                                }
+                                console.log("data.duration", data.duration);
+                                start(data.duration * 1000)
+                                setVideoDuration(data.duration * 1000)
+                            }}
+                        />
+                        : <FastImage
+                            onLoadEnd={() => start()}
+                            source={{ uri: content[current].image }}
+                            style={styles.image}
+                            resizeMode={resizeMode}
+                        />
+                    }
                     {load && <View style={styles.spinnerContainer}>
                         <ActivityIndicator size="large" color={'white'} />
                     </View>}

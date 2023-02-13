@@ -10,6 +10,8 @@ import styles from "./styles";
 import Header from "../../library/components/Header";
 import data from "./data";
 import InstaStory from "../../library/components/Stories";
+import Button from "../../library/components/Button";
+import { ScreenConstants } from "../../library/constants";
 
 type Props = NativeStackScreenProps<any> & DrawerScreenProps<any> & { topTabNavigation?: MaterialTopTabNavigationProp<any> }
 
@@ -25,14 +27,17 @@ const ProfileScreen: React.FC<Props> = ({ navigation, topTabNavigation }) => {
 			titleStyle={{ fontWeight: '600' }}
 		/>
 
-		<InstaStory data={data}
-			duration={30}
-			onStart={item => console.log(item)}
-			onClose={item => console.log('close: ', item)}
+		<InstaStory
+			data={data}
+			duration={10}
+			onStart={(item: any) => console.log(item)}
+			onClose={(item: any) => console.log('close: ', item)}
 			customSwipeUpComponent={<View>
 				<Text>Swipe</Text>
 			</View>}
+			avatarTextStyle={{ fontWeight: '700', color: theme.TXT_PRIMARY }}
 			style={{ marginTop: 30 }} />
+
 	</View>
 }
 
