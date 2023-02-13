@@ -9,7 +9,9 @@ type Props = {
     pressedBorderColor?: string
     avatarSize?: number
     showText?: boolean
-    textStyle: any
+    textStyle: any,
+    onPressCreateStory?:()=>void,
+    renderExtraItem?:any
 }
 
 const StoryCircleListView = (props: Props) => {
@@ -21,7 +23,9 @@ const StoryCircleListView = (props: Props) => {
         pressedBorderColor,
         avatarSize,
         showText,
-        textStyle
+        textStyle,
+        onPressCreateStory,
+        renderExtraItem
     } = props;
 
     return (
@@ -43,6 +47,8 @@ const StoryCircleListView = (props: Props) => {
                         unPressedBorderColor={unPressedBorderColor}
                         pressedBorderColor={pressedBorderColor}
                         item={item}
+                        onPressCreateStory={onPressCreateStory}
+                        renderExtraItem={renderExtraItem}
                         showText={showText}
                         textStyle={textStyle}
                     />

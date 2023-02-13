@@ -16,6 +16,7 @@ const styles = (theme: Theme) =>
     },
     containerHome: {
       marginHorizontal: 10,
+      flex:1
     },
   });
 

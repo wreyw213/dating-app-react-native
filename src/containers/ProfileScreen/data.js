@@ -29,7 +29,7 @@ module.exports = [
             },
             {
                 story_id: 2,
-                story_image: "http://techslides.com/demos/sample-videos/small.mp4",
+                story_image: "https://pbs.twimg.com/profile_images/1222140802475773952/61OmyINj.jpg",
                 swipeText: 'Custom swipe text for this story',
             }]
     },

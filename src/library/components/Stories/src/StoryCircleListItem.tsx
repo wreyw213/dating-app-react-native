@@ -5,14 +5,16 @@ import { usePrevious } from "./helpers/StateHelpers";
 
 
 type Props = {
-    item: any
-    unPressedBorderColor?: string
-    pressedBorderColor?: string
-    avatarSize?: number
-    showText?: boolean
-    textStyle: any,
-    handleStoryItemPress: (item: any) => void
-}
+  item: any;
+  unPressedBorderColor?: string;
+  pressedBorderColor?: string;
+  avatarSize?: number;
+  showText?: boolean;
+  textStyle: any;
+  handleStoryItemPress: (item: any) => void;
+  onPressCreateStory?: () => void;
+  renderExtraItem?:any
+};
 
 const StoryCircleListItem = (props: Props) => {
 
@@ -23,6 +25,8 @@ const StoryCircleListItem = (props: Props) => {
         avatarSize,
         showText,
         textStyle,
+        onPressCreateStory,
+        renderExtraItem,
     } = props;
 
     const [isPressed, setIsPressed] = useState(props?.item?.seen);
@@ -46,49 +50,62 @@ const StoryCircleListItem = (props: Props) => {
 
     const size = avatarSize ?? 60;
 
+    console.log("item.user_image",item)
     return (
-        <View style={styles.container}>
-            <TouchableOpacity
-                onPress={() => _handleItemPress(item)}
-                style={[
-                    styles.avatarWrapper,
-                    {
-                        height: size + 4,
-                        width: size + 4,
-                    },
-                    !isPressed
-                        ? {
-                            borderColor: unPressedBorderColor
-                                ? unPressedBorderColor
-                                : 'red'
-                        }
-                        : {
-                            borderColor: pressedBorderColor
-                                ? pressedBorderColor
-                                : 'grey'
-                        }
-                ]}
-            >
-                <Image
-                    style={{
-                        height: size,
-                        width: size,
-                        borderRadius: 100,
-                    }}
-                    source={{ uri: item.user_image }}
-                    defaultSource={Platform.OS === 'ios' ? images.DEFAULT_AVATAR : null}
-                />
-            </TouchableOpacity>
-            {showText &&
-                <Text
-                    numberOfLines={1}
-                    ellipsizeMode={'tail'}
-                    style={{
-                        width: size + 4,
-                        ...styles.text,
-                        ...textStyle
-                    }}>{item.user_name}</Text>}
-        </View>
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => {
+            if (item.stories && item.stories.length) _handleItemPress(item);
+            else {
+                onPressCreateStory && onPressCreateStory();
+            }
+
+          }}
+          style={[
+            styles.avatarWrapper,
+            {
+              height: size + 4,
+              width: size + 4,
+            },
+            !isPressed
+              ? {
+                  borderColor: unPressedBorderColor
+                    ? unPressedBorderColor
+                    : 'red',
+                }
+              : {
+                  borderColor: pressedBorderColor ? pressedBorderColor : 'grey',
+                },
+          ]}>
+          <Image
+            style={{
+              height: size,
+              width: size,
+              borderRadius: 100,
+            }}
+            source={
+              typeof item.user_image == 'string' &&
+              item.user_image?.includes('http')
+                ? {uri: item.user_image}
+                : item.user_image
+            }
+            defaultSource={Platform.OS === 'ios' ? images.DEFAULT_AVATAR : null}
+          />
+          {(item.id == -1 && renderExtraItem) ? renderExtraItem() : null}
+        </TouchableOpacity>
+        {showText && (
+          <Text
+            numberOfLines={1}
+            ellipsizeMode={'tail'}
+            style={{
+              width: size + 4,
+              ...styles.text,
+              ...textStyle,
+            }}>
+            {item.user_name}
+          </Text>
+        )}
+      </View>
     );
 }
 

@@ -22,7 +22,9 @@ type Props = {
     customCloseComponent?: any,
     avatarSize?: number,
     showAvatarText?: boolean,
-    avatarTextStyle?: TextStyle
+    avatarTextStyle?: TextStyle,
+    onPressCreateStory?:()=>void,
+    renderExtraItem?:any
 };
 
 export const Story = (props: Props) => {
@@ -39,7 +41,9 @@ export const Story = (props: Props) => {
         customCloseComponent,
         avatarSize,
         showAvatarText,
-        avatarTextStyle
+        avatarTextStyle,
+        onPressCreateStory,
+        renderExtraItem
     } = props;
 
     const [dataState, setDataState] = useState(data);
@@ -159,35 +163,36 @@ export const Story = (props: Props) => {
     }
 
     return (
-        <Fragment>
-            <View style={style}>
-                <StoryCircleListView
-                    handleStoryItemPress={_handleStoryItemPress}
-                    data={dataState}
-                    avatarSize={avatarSize}
-                    unPressedBorderColor={unPressedBorderColor}
-                    pressedBorderColor={pressedBorderColor}
-                    showText={showAvatarText}
-                    textStyle={avatarTextStyle}
-                />
-            </View>
-            <Modal
-                style={{
-                    flex: 1,
-                    height: Dimensions.get("window").height,
-                    width: Dimensions.get("window").width
-                }}
-                isOpen={isModalOpen}
-                onClosed={() => setIsModalOpen(false)}
-                position="center"
-                swipeToClose
-                swipeArea={250}
-                backButtonClose
-                coverScreen={true}
-            >
-                {renderCube()}
-            </Modal>
-        </Fragment>
+      <Fragment>
+        <View style={style}>
+          <StoryCircleListView
+            handleStoryItemPress={_handleStoryItemPress}
+            data={dataState}
+            avatarSize={avatarSize}
+            unPressedBorderColor={unPressedBorderColor}
+            pressedBorderColor={pressedBorderColor}
+            showText={showAvatarText}
+            onPressCreateStory={onPressCreateStory}
+            textStyle={avatarTextStyle}
+            renderExtraItem={renderExtraItem}
+          />
+        </View>
+        <Modal
+          style={{
+            flex: 1,
+            height: Dimensions.get('window').height,
+            width: Dimensions.get('window').width,
+          }}
+          isOpen={isModalOpen}
+          onClosed={() => setIsModalOpen(false)}
+          position="center"
+          swipeToClose
+          swipeArea={250}
+          backButtonClose
+          coverScreen={true}>
+          {renderCube()}
+        </Modal>
+      </Fragment>
     );
 };
 export default Story;

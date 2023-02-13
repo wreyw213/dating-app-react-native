@@ -1,9 +1,10 @@
 export interface IUserStory {
+    id?:number,
     seen?: boolean;
-    user_id: number,
+    user_id?: number,
     user_image: string,
     user_name: string,
-    stories: IUserStoryItem[]
+    stories?: IUserStoryItem[]
 }
 
 export interface IUserStoryItem {

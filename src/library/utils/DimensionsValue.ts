@@ -61,6 +61,7 @@ const DimensionsValue = {
   VALUE_168: width / 2.23,
   VALUE_180: width / 2.08,
   VALUE_185: width / 2.03,
+  VALUE_200: width / 1.87,
   VALUE_214: width / 1.75,
   VALUE_242: width / 1.54,
   VALUE_250: width / 1.5,

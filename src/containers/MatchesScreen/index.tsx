@@ -18,29 +18,32 @@ const MatchesScreen: React.FC<Props> = ({ navigation }) => {
 
     const [theme] = useTheme()
 
-    return null
 
+    return (
+      <View style={styles(theme).containerHome}>
+        <Header title="Matches" titleStyle={{fontWeight: '700'}} />
 
-    return <View style={styles(theme).containerHome}>
-        <Header
-            title="Matches"
-            titleStyle={{ fontWeight: '700' }}
-        />
-
-        <Text style={styles(theme).textScreenDiscription}>This is a list of people who have super liked you and your matches.</Text>
+        <Text style={styles(theme).textScreenDiscription}>
+          This is a list of people who have super liked you and your matches.
+        </Text>
 
         <FlatList
-            data={demo}
-            numColumns={2}
-            renderItem={({ item, index }) => <MatchCard
-                image={item.image}
-                name={item.name}
-                onPressLeft={() => console.log("Left Press")}
-                onPressRight={() => console.log("Right Press")}
-                onPressChat={() => console.log("Chat Press")}
-            />}
+          data={demo}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+          renderItem={({item, index}) => (
+            <MatchCard
+              image={item.image}
+              name={item.name}
+              age={19}
+              onPressLeft={() => console.log('Left Press')}
+              onPressRight={() => console.log('Right Press')}
+              onPressChat={() => console.log('Chat Press')}
+            />
+          )}
         />
-    </View>
+      </View>
+    );
 }
 
 export default MatchesScreen

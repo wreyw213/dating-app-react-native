@@ -33,7 +33,7 @@ type Props = {
     swipeText?: string,
     customSwipeUpComponent?: any,
     customCloseComponent?: any,
-    stories: IUserStoryItem[],
+    stories?: IUserStoryItem[],
     currentPage: number,
     index: number,
 };
@@ -41,7 +41,7 @@ type Props = {
 export const StoryListItem = (props: Props) => {
     const stories = props.stories;
 
-    const { duration } = props
+    const {duration} = props;
 
     const [load, setLoad] = useState(true);
     const [pressed, setPressed] = useState(false);
@@ -49,15 +49,18 @@ export const StoryListItem = (props: Props) => {
     const [resizeMode, setResizeMode] = useState<resizeMode>('cover')
 
     const [content, setContent] = useState(
-        stories.map((x) => {
+      stories?.length
+        ? stories.map(x => {
             return {
-                image: x.story_image,
-                onPress: x.onPress,
-                swipeText: x.swipeText,
-                finish: 0,
-                isVideo: x.is_video
-            }
-        }));
+              image: x.story_image,
+              onPress: x.onPress,
+              swipeText: x.swipeText,
+              finish: 0,
+              isVideo: x.is_video,
+            };
+          })
+        : [],
+    );
 
     const [current, setCurrent] = useState(0);
 
@@ -213,7 +216,7 @@ export const StoryListItem = (props: Props) => {
                                 if (naturalSize.width < width) {
                                     setResizeMode("cover")
                                 } else {
-                                    setResizeMode("cover")
+                                    setResizeMode("contain")
                                 }
                                 console.log("data.duration", data.duration);
                                 start(data.duration * 1000)
@@ -330,7 +333,6 @@ const styles = StyleSheet.create({
     image: {
         width: width,
         height: height,
-        resizeMode: 'cover'
     },
     backgroundContainer: {
         position: 'absolute',
