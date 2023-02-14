@@ -15,9 +15,9 @@ type Props = NativeStackScreenProps<any>
 const TopTabNavigation: FC<Props> = () => {
   const Tab = createMaterialTopTabNavigator();
 
-  const { currentNavigationState: { data } } = useSelector((state => state)) as RootState
+  // const { currentNavigationState: { data } } = useSelector((state => state)) as RootState
 
-  console.log("route++++++++++++++++", data)
+  // console.log("route++++++++++++++++", data)
 
   const enabledRoutes = [
     ScreenConstants.FEED_SCREEN,
@@ -25,9 +25,10 @@ const TopTabNavigation: FC<Props> = () => {
     //   ScreenConstants.HOME_SCREEN,
     ScreenConstants.CHAT_SCREEN,
   ];
-  return <Tab.Navigator screenOptions={{
-    swipeEnabled: (!data?.name || enabledRoutes.includes(data?.name)) ? true : false,
-  }}
+  return <Tab.Navigator
+    // screenOptions={{
+    //   swipeEnabled: (!data?.name || enabledRoutes.includes(data?.name)) ? true : false,
+    // }}
     tabBar={(Prosp) => null}>
     <Tab.Screen
       name={ScreenConstants.DRAWER_STACK}

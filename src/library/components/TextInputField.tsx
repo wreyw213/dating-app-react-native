@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import {
   View,
   TextInput,
@@ -6,6 +6,7 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
+  Text,
 } from 'react-native';
 import useTheme from '../hooks/useTheme';
 import { Theme } from '../types';
@@ -19,6 +20,7 @@ interface Props {
   value: string;
   onChangeText: (text: string) => void;
   inputFieldStyle?: StyleProp<TextStyle>;
+  title?: string
 }
 
 const TextInputField: FC<Props> = ({
@@ -61,14 +63,14 @@ const styles = (theme: Theme) =>
       borderRadius: DimensionsValue.VALUE_12,
       paddingHorizontal: DimensionsValue.VALUE_10,
       marginVertical: DimensionsValue.VALUE_15,
-      width:DimensionsValue.VALUE_330,
-      alignSelf:'center',
+      width: DimensionsValue.VALUE_330,
+      alignSelf: 'center',
     },
     input: {
       flex: 1,
       paddingHorizontal: 10,
       fontSize: DimensionsValue.VALUE_16,
-      color:theme.TXT_PRIMARY
+      color: theme.TXT_PRIMARY
     },
   });
 

@@ -30,10 +30,11 @@ export default {
 
   IC_FLESH: require('./ic_flash.png'),
   IC_USER: require('./ic_user.png'),
-  IC_BACK: require('./ic_btn_back.png'),
+  IC_BACK: require('./ic_back.png'),
   IC_FILTER: require('./ic_btn_filter.png'),
   IC_PLUS_LIGHT: require('./ic_plus_light.png'),
 
   DEFAULT_AVATAR: require('./no_avatar.png'),
-  IC_PLUS_ROUND: require('./ic_plus_add.png')
+  IC_PLUS_ROUND: require('./ic_plus_add.png'),
+  IC_GEAR: require('./ic_gear.png'),
 };

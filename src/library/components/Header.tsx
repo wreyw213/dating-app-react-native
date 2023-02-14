@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { View, TouchableOpacity, Image, Text, StyleSheet, ImageSourcePropType, StyleProp, ViewStyle, ImageStyle as NativeImageStyle, TextStyle } from 'react-native';
-import {Colors} from '../constants';
-import  { ImageStyle } from 'react-native-fast-image';
+import { Colors } from '../constants';
+import { ImageStyle } from 'react-native-fast-image';
 import DimensionsValue from '../utils/DimensionsValue';
 import { Theme } from '../types';
 import useTheme from '../hooks/useTheme';
@@ -19,6 +19,7 @@ type Props = {
   titleStyle?: StyleProp<TextStyle>;
   showRightIcon?: boolean | null;
   showUserProfileImage?: boolean;
+  renderExtraItem?: () => ReactElement
 };
 const Header: FC<Props> = ({
   leftIcon,
@@ -32,6 +33,7 @@ const Header: FC<Props> = ({
   titleStyle,
   showRightIcon = true,
   showUserProfileImage = false,
+  renderExtraItem,
   ...titleProps
 }) => {
 
@@ -41,11 +43,10 @@ const Header: FC<Props> = ({
     <View style={[styles(theme).viewHeader, headerStyle]}>
       {leftIcon ? (
         <TouchableOpacity
-          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+          hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
           onPress={() => tapOnLeftIcon && tapOnLeftIcon()}
           style={{
             width: DimensionsValue.VALUE_50,
-            paddingStart: DimensionsValue.VALUE_22,
           }}>
           <Image source={leftIcon} style={leftIconStyle} />
         </TouchableOpacity>
@@ -58,19 +59,20 @@ const Header: FC<Props> = ({
       ) : null}
 
       <TouchableOpacity
-        hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+        hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
         onPress={() => tapOnRightIcon && tapOnRightIcon()}
-        style={{justifyContent:'center'}}
-       >
+        style={{ justifyContent: 'center' }}
+      >
         {rightIcon ? <Image source={rightIcon} style={rightIconStyle} /> : null}
       </TouchableOpacity>
+      {renderExtraItem ? renderExtraItem() : null}
     </View>
   );
 };
 
 export default Header
 
-const styles = (theme:Theme) => StyleSheet.create({
+const styles = (theme: Theme) => StyleSheet.create({
   textTitle: {
     fontSize: DimensionsValue.VALUE_28,
     color: theme.TXT_PRIMARY,
@@ -82,7 +84,7 @@ const styles = (theme:Theme) => StyleSheet.create({
     // alignItems: 'center',
     zIndex: 999,
     backgroundColor: Colors.TRANSPARENT,
-    paddingHorizontal:DimensionsValue.VALUE_10,
-    justifyContent:'space-between',
+    paddingHorizontal: DimensionsValue.VALUE_10,
+    justifyContent: 'space-between',
   },
 })

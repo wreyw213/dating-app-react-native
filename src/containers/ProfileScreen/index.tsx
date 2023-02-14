@@ -16,6 +16,8 @@ import DimensionsValue from "../../library/utils/DimensionsValue";
 import demo from "../HomeScreen/assets/data/demo";
 import ImageViewModal from "../../library/components/ImageViewModal";
 import Button from "../../library/components/Button";
+import { AppConstants, ScreenConstants } from "../../library/constants";
+import EditProfileModal from "../../library/components/EditProfileModal";
 
 type Props = NativeStackScreenProps<any> & MaterialTopTabScreenProps<any>
 
@@ -23,10 +25,14 @@ type ImageModalDataType = {
 	show: boolean,
 	image?: Source | ImageRequireSource
 }
-const ProfileScreen: React.FC<Props> = () => {
+const ProfileScreen: React.FC<Props> = ({ navigation }) => {
 	const isFoucused = useIsFocused()
 	const [theme] = useTheme()
 	const [imageModalData, setImageModalData] = useState<ImageModalDataType>({
+		show: false,
+	})
+
+	const [profileModalData, setProfileModalData] = useState<any>({
 		show: false,
 	})
 
@@ -78,6 +84,16 @@ const ProfileScreen: React.FC<Props> = () => {
 		</TouchableOpacity>
 	}
 
+	const handlePressSettings = () => {
+		navigation.navigate(ScreenConstants.SETTINGS_SCREEN)
+	}
+
+	const handleEditProfile = () => {
+		setProfileModalData({
+			show: true
+		})
+	}
+
 
 	const renderHeader = () => {
 		return <Fragment>
@@ -100,7 +116,7 @@ const ProfileScreen: React.FC<Props> = () => {
 			<Text style={styles(theme).textDescription}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo tempore optio odit ullam id quis dolores provident! Illo!</Text>
 
 			<View style={styles(theme).viewButtons}>
-				<Button textStyle={styles(theme).textButtons} containerStyle={styles(theme).buttonContainer} title="Edit Profile" onPress={() => Alert.alert("Develoiper says", "still to implement")} />
+				<Button textStyle={styles(theme).textButtons} containerStyle={styles(theme).buttonContainer} title="Edit Profile" onPress={handleEditProfile} />
 				<Button textStyle={styles(theme).textButtons} containerStyle={styles(theme).buttonContainer} title="Share Profile" onPress={() => Alert.alert("Develoiper says", "still to implement")} />
 			</View>
 
@@ -110,15 +126,25 @@ const ProfileScreen: React.FC<Props> = () => {
 
 
 			<InstaStory
-				data={data}
+				data={[{ id: -1, user_name: 'You', seen: true, user_image: images.IC_USER }, ...data]}
 				duration={10}
 				onStart={(item: any) => console.log(item)}
 				onClose={(item: any) => console.log('close: ', item)}
 				customSwipeUpComponent={<View>
 					<Text>Swipe</Text>
 				</View>}
+				onPressCreateStory={() => console.log("onPressCreateStory")}
 				avatarTextStyle={{ fontWeight: '700', color: theme.TXT_PRIMARY }}
-				style={{ marginVertical: 10 }} />
+				style={{ marginVertical: 10 }}
+				renderExtraItem={() => <TouchableOpacity
+					hitSlop={AppConstants.HITSLOP_SMALL}
+					style={styles(theme).viewOverlay}>
+					<Image
+						style={styles(theme).imagePlus}
+						source={images.IC_PLUS_LIGHT}
+					/>
+				</TouchableOpacity>}
+			/>
 
 			<View style={styles(theme).viewPosts}>
 				<Text style={styles(theme).textPosts}>Posts</Text>
@@ -133,6 +159,9 @@ const ProfileScreen: React.FC<Props> = () => {
 			titleStyle={{ fontWeight: '600' }}
 			rightIcon={images.IC_PLUS_ROUND}
 			rightIconStyle={styles(theme).imageRightHeader}
+			renderExtraItem={() => <TouchableOpacity style={styles(theme).touchGear} onPress={handlePressSettings}>
+				<Image style={styles(theme).imageRightGear} source={images.IC_GEAR} />
+			</TouchableOpacity>}
 		/>
 
 		<FlatList
@@ -148,6 +177,15 @@ const ProfileScreen: React.FC<Props> = () => {
 		{imageModalData.show && <ImageViewModal cached={true} uri={imageModalData.image} hideModal={() => {
 			setImageModalData({ show: false })
 		}} />}
+
+		{profileModalData.show && <EditProfileModal
+			hideModal={() => {
+				setProfileModalData({ show: false })
+			}}
+			theme={theme}
+			isVisible={profileModalData.show}
+			onChangeCallBack={() => setProfileModalData({ show: false })}
+		/>}
 	</View>
 }
 
