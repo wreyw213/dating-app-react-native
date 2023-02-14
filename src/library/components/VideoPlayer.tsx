@@ -55,13 +55,11 @@ class VideoPlayer extends React.Component<Props, State> {
 
 
     onBuffer = (data: OnBufferData) => {
-        console.log("data", data);
 
         this.setState({ loading: data.isBuffering })
     }
 
     onError = (error: LoadError) => {
-        console.log("error", error)
         this.setState({
             loading: false,
             error: true,

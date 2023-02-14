@@ -67,12 +67,12 @@ export default MessagesScreen
 type ActivitiesProps = {
   theme: Theme
 }
-const Activities = ({theme}: ActivitiesProps) => (
+const Activities = ({ theme }: ActivitiesProps) => (
   <View style={styles(theme).viewHeader}>
     <Text style={styles(theme).textActivities}>Activities</Text>
-    
+
     <InstaStory
-      data={[{id: -1,user_name:'You',seen:true,user_image:images.IC_USER}, ...data]}
+      data={[{ id: -1, user_name: 'You', seen: true, user_image: images.IC_USER }, ...data]}
       duration={10}
       avatarSize={DimensionsValue.VALUE_70}
       onStart={(item: any) => console.log(item)}
@@ -83,7 +83,7 @@ const Activities = ({theme}: ActivitiesProps) => (
         </View>
       }
       onPressCreateStory={() => console.log("onPressCreateStory")}
-      avatarTextStyle={{fontWeight: '700', color: theme.TXT_PRIMARY}}
+      avatarTextStyle={{ fontWeight: '700', color: theme.TXT_PRIMARY }}
       style={styles(theme).viewInstaStory}
       renderExtraItem={() => <TouchableOpacity
         hitSlop={AppConstants.HITSLOP_SMALL}

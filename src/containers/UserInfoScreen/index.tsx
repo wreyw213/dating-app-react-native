@@ -30,7 +30,6 @@ const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
             setUserData(data.data)
             Alert.alert(data.message)
         }).catch((err) => {
-            console.log("error", err)
             Alert.alert(err)
         })
     }

@@ -39,21 +39,21 @@ const FeedScreen: React.FC<Props> = ({ navigation, topTabNavigation }) => {
 
 		const appStateListener = AppState.addEventListener('change', (state: AppStateStatus) => {
 			if (state == 'active') {
-				console.log("Active =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+				// console.log("Active =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 				playCurrentItem()
 			} else {
-				console.log("InActive =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+				// console.log("InActive =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 				pauseCurrentItem()
 			}
 		})
 
 		const navigationListener = navigation.addListener('blur', () => {
-			console.log("Blur =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+			// console.log("Blur =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 			pauseCurrentItem()
 		})
 
 		const navigationFocusListener = navigation.addListener('focus', () => {
-			console.log("focus=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+			// console.log("focus=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 			playCurrentItem()
 		})
 
@@ -61,12 +61,12 @@ const FeedScreen: React.FC<Props> = ({ navigation, topTabNavigation }) => {
 
 			listerner = topTabNavigation.addListener('swipeStart', () => {
 				pauseCurrentItem()
-				console.log("HEY I SHOULD WORK swipeStart............")
+				// console.log("HEY I SHOULD WORK swipeStart............")
 			})
 
 			listernerSwipeEnd = topTabNavigation.addListener('swipeEnd', () => {
 				isFoucused && playCurrentItem()
-				console.log("HEY I SHOULD WORK swipeEnd............")
+				// console.log("HEY I SHOULD WORK swipeEnd............", isFoucused)
 			})
 		}
 
@@ -81,15 +81,13 @@ const FeedScreen: React.FC<Props> = ({ navigation, topTabNavigation }) => {
 
 	const pauseCurrentItem = () => {
 		const cell = cellRefs[currentIndex];
-		console.log("pauseCurrentIndex", currentIndex)
+		// console.log("pauseCurrentIndex", currentIndex)
 		if (cell) {
 			cell.pause();
 		}
 	}
-	console.log("isFoucused", isFoucused)
 	const playCurrentItem = () => {
 		const cell = cellRefs[currentIndex];
-		console.log("currentIndexcurrentIndex", currentIndex);
 		if (cell) {
 			cell.play(false);
 		}

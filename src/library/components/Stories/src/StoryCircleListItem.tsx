@@ -13,123 +13,122 @@ type Props = {
   textStyle: any;
   handleStoryItemPress: (item: any) => void;
   onPressCreateStory?: () => void;
-  renderExtraItem?:any
+  renderExtraItem?: any
 };
 
 const StoryCircleListItem = (props: Props) => {
 
-    const {
-        item,
-        unPressedBorderColor,
-        pressedBorderColor,
-        avatarSize,
-        showText,
-        textStyle,
-        onPressCreateStory,
-        renderExtraItem,
-    } = props;
+  const {
+    item,
+    unPressedBorderColor,
+    pressedBorderColor,
+    avatarSize,
+    showText,
+    textStyle,
+    onPressCreateStory,
+    renderExtraItem,
+  } = props;
 
-    const [isPressed, setIsPressed] = useState(props?.item?.seen);
+  const [isPressed, setIsPressed] = useState(props?.item?.seen);
 
-    const prevSeen = usePrevious(props?.item?.seen);
+  const prevSeen = usePrevious(props?.item?.seen);
 
-    useEffect(() => {
-        if (prevSeen != props?.item?.seen) {
-            setIsPressed(props?.item?.seen);
-        }
+  useEffect(() => {
+    if (prevSeen != props?.item?.seen) {
+      setIsPressed(props?.item?.seen);
+    }
 
-    }, [props?.item?.seen]);
+  }, [props?.item?.seen]);
 
-    const _handleItemPress = (item: any) => {
-        const { handleStoryItemPress } = props;
+  const _handleItemPress = (item: any) => {
+    const { handleStoryItemPress } = props;
 
-        if (handleStoryItemPress) handleStoryItemPress(item);
+    if (handleStoryItemPress) handleStoryItemPress(item);
 
-        setIsPressed(true);
-    };
+    setIsPressed(true);
+  };
 
-    const size = avatarSize ?? 60;
+  const size = avatarSize ?? 60;
 
-    console.log("item.user_image",item)
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={() => {
-            if (item.stories && item.stories.length) _handleItemPress(item);
-            else {
-                onPressCreateStory && onPressCreateStory();
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => {
+          if (item.stories && item.stories.length) _handleItemPress(item);
+          else {
+            onPressCreateStory && onPressCreateStory();
+          }
+
+        }}
+        style={[
+          styles.avatarWrapper,
+          {
+            height: size + 4,
+            width: size + 4,
+          },
+          !isPressed
+            ? {
+              borderColor: unPressedBorderColor
+                ? unPressedBorderColor
+                : 'red',
             }
-
-          }}
-          style={[
-            styles.avatarWrapper,
-            {
-              height: size + 4,
-              width: size + 4,
+            : {
+              borderColor: pressedBorderColor ? pressedBorderColor : 'grey',
             },
-            !isPressed
-              ? {
-                  borderColor: unPressedBorderColor
-                    ? unPressedBorderColor
-                    : 'red',
-                }
-              : {
-                  borderColor: pressedBorderColor ? pressedBorderColor : 'grey',
-                },
-          ]}>
-          <Image
-            style={{
-              height: size,
-              width: size,
-              borderRadius: 100,
-            }}
-            source={
-              typeof item.user_image == 'string' &&
+        ]}>
+        <Image
+          style={{
+            height: size,
+            width: size,
+            borderRadius: 100,
+          }}
+          source={
+            typeof item.user_image == 'string' &&
               item.user_image?.includes('http')
-                ? {uri: item.user_image}
-                : item.user_image
-            }
-            defaultSource={Platform.OS === 'ios' ? images.DEFAULT_AVATAR : null}
-          />
-          {(item.id == -1 && renderExtraItem) ? renderExtraItem() : null}
-        </TouchableOpacity>
-        {showText && (
-          <Text
-            numberOfLines={1}
-            ellipsizeMode={'tail'}
-            style={{
-              width: size + 4,
-              ...styles.text,
-              ...textStyle,
-            }}>
-            {item.user_name}
-          </Text>
-        )}
-      </View>
-    );
+              ? { uri: item.user_image }
+              : item.user_image
+          }
+          defaultSource={Platform.OS === 'ios' ? images.DEFAULT_AVATAR : null}
+        />
+        {(item.id == -1 && renderExtraItem) ? renderExtraItem() : null}
+      </TouchableOpacity>
+      {showText && (
+        <Text
+          numberOfLines={1}
+          ellipsizeMode={'tail'}
+          style={{
+            width: size + 4,
+            ...styles.text,
+            ...textStyle,
+          }}>
+          {item.user_name}
+        </Text>
+      )}
+    </View>
+  );
 }
 
 export default StoryCircleListItem;
 
 const styles = StyleSheet.create({
-    container: {
-        marginVertical: 5,
-        marginRight: 10
-    },
-    avatarWrapper: {
-        borderWidth: 2,
-        justifyContent: "center",
-        alignItems: "center",
-        alignSelf: "center",
-        borderColor: 'red',
-        borderRadius: 100,
-        height: 64,
-        width: 64
-    },
-    text: {
-        marginTop: 3,
-        textAlign: "center",
-        alignItems: "center",
-        fontSize: 11
-    }
+  container: {
+    marginVertical: 5,
+    marginRight: 10
+  },
+  avatarWrapper: {
+    borderWidth: 2,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    borderColor: 'red',
+    borderRadius: 100,
+    height: 64,
+    width: 64
+  },
+  text: {
+    marginTop: 3,
+    textAlign: "center",
+    alignItems: "center",
+    fontSize: 11
+  }
 });
