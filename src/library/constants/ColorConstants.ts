@@ -1,6 +1,6 @@
 export const Colors = {
   RED: 'red',
-  RED_LIGHT: '#FF2741E6',
+  RED_LIGHT: '#E94057',
   FEILD_PLACEHOLDER: '#999999',
   WHITE: '#FFFFFF',
   BLACK: '#333333',

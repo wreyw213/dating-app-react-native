@@ -18,8 +18,6 @@ const MatchesScreen: React.FC<Props> = ({ navigation }) => {
 
   const [theme] = useTheme()
 
-  return null
-
   return (
     <View style={styles(theme).containerHome}>
       <Header title="Matches" titleStyle={{ fontWeight: '700' }} />

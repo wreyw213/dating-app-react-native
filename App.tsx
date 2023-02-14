@@ -28,6 +28,7 @@ import { AppDispatch } from './src/library/redux/store';
 import ThemeScreen from './src/containers/ThemeScreen';
 import ChatScreen from './src/containers/ChatScreen';
 import SettingsScreen from './src/containers/SettingsScreen';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 
 
@@ -67,6 +68,7 @@ const App = () => {
 
 
   return (
+    <BottomSheetModalProvider>
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.BG_PRIMARY }}>
       <StatusBar
         barStyle={theme?.type == 'dark' ? 'light-content' : 'dark-content'}
@@ -104,6 +106,7 @@ const App = () => {
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
+    </BottomSheetModalProvider>
   );
 };
 

@@ -26,6 +26,6 @@ const navigationSlice = createSlice({
     },
 })
 
-export const { updateNavigationState } = navigationSlice.actions;
+export const {updateNavigationState} = navigationSlice.actions;
 
 export default navigationSlice.reducer

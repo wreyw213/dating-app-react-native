@@ -84,6 +84,10 @@ const styles = (theme: Theme) =>
       transform: [{rotate: '45 deg'}],
       tintColor:theme.TXT_PRIMARY
     },
+
+    //Filters Component
+
+    
   });
 
   export default styles
