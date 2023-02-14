@@ -1,15 +1,15 @@
 import React, { FC, useState } from 'react';
 import { View, Modal, StyleSheet, Dimensions, Image, SafeAreaView, TouchableWithoutFeedback, ActivityIndicator, TouchableOpacity, Text, ImageRequireSource } from 'react-native';
-import FastImage, {Source} from 'react-native-fast-image';
+import FastImage, { Source } from 'react-native-fast-image';
 import DimensionsValue from '../utils/DimensionsValue';
 
 const { width, height } = Dimensions.get('window');
 
 type Props = {
-  uri: Source | ImageRequireSource;
+  uri?: Source | ImageRequireSource;
   hideModal: () => void;
-  cached: boolean;
-  fallbackSource: ImageRequireSource
+  cached?: boolean;
+  fallbackSource?: ImageRequireSource
 };
 
 const ImageViewModal: FC<Props> = ({

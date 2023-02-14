@@ -26,6 +26,7 @@ const MessagesScreen: React.FC<Props> = ({ navigation }) => {
 
   const [searchValue, setSearchValue] = useState('');
 
+  return null
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header

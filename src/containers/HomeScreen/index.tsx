@@ -19,6 +19,8 @@ const Home: FC<Props> = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   let swiper: any = useRef(null);
 
+  return null
+
 
   return (
     <View style={styles(theme).containerHome}>

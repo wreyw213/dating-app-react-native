@@ -18,6 +18,7 @@ const MatchesScreen: React.FC<Props> = ({ navigation }) => {
 
   const [theme] = useTheme()
 
+  return null
 
   return (
     <View style={styles(theme).containerHome}>

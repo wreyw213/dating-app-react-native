@@ -34,5 +34,6 @@ export default {
   IC_FILTER: require('./ic_btn_filter.png'),
   IC_PLUS_LIGHT: require('./ic_plus_light.png'),
 
-  DEFAULT_AVATAR: require('./no_avatar.png')
+  DEFAULT_AVATAR: require('./no_avatar.png'),
+  IC_PLUS_ROUND: require('./ic_plus_add.png')
 };
