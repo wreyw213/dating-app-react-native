@@ -47,5 +47,8 @@ export default {
   IC_FEEDBACK: require('./ic_feedback.png'),
   IC_AGREEMENT: require('./ic_agreement.png'),
   IC_SHIELD: require('./ic_shield.png'),
-  IC_LOGOUT: require('./ic_logout.png')
+  IC_LOGOUT: require('./ic_logout.png'),
+  IC_SHARE: require('./share.png'),
+  IC_COMMENT: require('./ic_comment.png'),
+  IC_MORE: require('./more.png')
 };

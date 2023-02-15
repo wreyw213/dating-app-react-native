@@ -1,9 +1,11 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import styles from "../styles";
 import VideoPlayer from "../../../library/components/VideoPlayer";
 import ProgressiveImage from "./ProgressiveImage";
 import { Theme } from "../../../library/types";
+import ImageButton from "../../../library/components/ImageButton";
+import images from "../../../library/resources/images";
+import styles from "./styles";
 
 type Props = {
 	index: number,
@@ -14,7 +16,8 @@ type Props = {
 	scrollToTop?: () => void,
 	heightOfView: number,
 	media_type: "image" | "video",
-	theme: Theme
+	theme: Theme,
+	item?: any
 }
 
 class FlatItem extends React.PureComponent<Props> {
@@ -47,17 +50,12 @@ class FlatItem extends React.PureComponent<Props> {
 	}
 
 	render() {
-		const { index, media_type, sources, media_small, title, scrollToTop, heightOfView, theme } = this.props;
+		const { index, media_type, sources, media_small, title, scrollToTop, heightOfView, theme, item } = this.props;
 
 		return (
 			<View style={[styles(theme).cell, { height: heightOfView }]}>
 
-				<View style={[styles(theme).viewTop]}>
-					<TouchableOpacity onPress={scrollToTop}>
-						<Text style={styles(theme).overlayText}>Item no. {index} {media_type}</Text>
-						<Text style={styles(theme).overlayText}>{title}</Text>
-					</TouchableOpacity>
-				</View>
+				<TouchableOpacity style={[styles(theme).viewTop]} onPress={scrollToTop} />
 
 				{media_type == 'image' ?
 					<ProgressiveImage
@@ -77,9 +75,20 @@ class FlatItem extends React.PureComponent<Props> {
 					/>
 				}
 
-				<Text style={styles(theme).textDescription}>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor debitis quasi at ducimus quod ipsam corporis, tempore, mollitia ullam cum voluptatem praesentium incidunt quos consequatur suscipit porro, maiores ad quaerat.
-				</Text>
+				<View style={styles(theme).viewSideActions}>
+					<ImageButton image={images.IC_HEART_OUTLINE} imageStyle={styles(theme).imageAction} />
+					<ImageButton image={images.IC_COMMENT} imageStyle={styles(theme).imageAction} />
+					<ImageButton image={images.IC_SHARE} imageStyle={styles(theme).imageAction} />
+					<ImageButton image={images.IC_MORE} imageStyle={styles(theme).imageAction} />
+				</View>
+
+				<View style={styles(theme).textDescription}>
+					<ImageButton imageStyle={styles(theme).imageUser} image={item && item.userImage ? { src: item.userImage } : images.IC_USER} />
+					<View>
+						<Text style={styles(theme).textName}>mark davis</Text>
+						<Text style={styles(theme).textUserName}>@marko0283</Text>
+					</View>
+				</View>
 			</View>
 		);
 	}
