@@ -13,7 +13,6 @@ type Props = {
 };
 const Activity: FC<Props> = ({handlePressItem, item}) => {
   const [theme] = useTheme();
-  console.log('item.name', item.name);
 
   return (
     <TouchableOpacity

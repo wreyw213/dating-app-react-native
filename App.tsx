@@ -9,7 +9,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { SafeAreaView, StatusBar, Text, useColorScheme, View } from 'react-native';
+import { Platform, SafeAreaView, StatusBar, Text, useColorScheme, View } from 'react-native';
 
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 
@@ -27,6 +27,7 @@ import useTheme from './src/library/hooks/useTheme';
 import { AppDispatch } from './src/library/redux/store';
 import ThemeScreen from './src/containers/ThemeScreen';
 import ChatScreen from './src/containers/ChatScreen';
+import AddMobComponent from './src/library/components/AddMobComponent';
 
 
 
@@ -67,6 +68,7 @@ const App = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.BG_PRIMARY }}>
+      <AddMobComponent/>
       <StatusBar
         barStyle={theme?.type == 'dark' ? 'light-content' : 'dark-content'}
         backgroundColor={theme.BG_PRIMARY}
