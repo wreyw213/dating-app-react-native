@@ -1,14 +1,12 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationState, useNavigationState, useRoute } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useEffect } from "react"
-import { Directions, Gesture, GestureDetector } from 'react-native-gesture-handler';
+import React, { FC } from "react"
 import { useSelector } from 'react-redux';
-import ChatScreen from '../containers/ChatScreen';
 import ProfileScreen from '../containers/ProfileScreen';
 import ScreenConstants from '../library/constants/ScreenConstants';
 import { RootState } from '../library/redux/store';
-import DrawerStack from './DrawerStack';
+import BottomTab from './BottomTabs';
 
 type Props = NativeStackScreenProps<any>
 
@@ -16,8 +14,6 @@ const TopTabNavigation: FC<Props> = () => {
   const Tab = createMaterialTopTabNavigator();
 
   const { currentNavigationState: { data } } = useSelector((state => state)) as RootState
-
-  // console.log("route++++++++++++++++", data)
 
   const enabledRoutes = [
     ScreenConstants.FEED_SCREEN,
@@ -31,8 +27,8 @@ const TopTabNavigation: FC<Props> = () => {
     }}
     tabBar={(Prosp) => null}>
     <Tab.Screen
-      name={ScreenConstants.DRAWER_STACK}
-      component={DrawerStack}
+      name={ScreenConstants.BOTTOM_STACk}
+      component={BottomTab}
     />
     <Tab.Screen name={ScreenConstants.PROFILE_SCREEN} component={ProfileScreen} />
   </Tab.Navigator>

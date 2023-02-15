@@ -14,7 +14,6 @@ import { SafeAreaView, StatusBar, Text, useColorScheme, View } from 'react-nativ
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import DrawerStack from './src/navigation/DrawerStack';
 import analytics from '@react-native-firebase/analytics';
 import TopTabNavigation from './src/navigation/TopTabNavigation';
 import { Directions, Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -30,15 +29,6 @@ import ChatScreen from './src/containers/ChatScreen';
 import SettingsScreen from './src/containers/SettingsScreen';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
-
-
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
 
 
 const App = () => {
@@ -69,43 +59,42 @@ const App = () => {
 
   return (
     <BottomSheetModalProvider>
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.BG_PRIMARY }}>
-      <StatusBar
-        barStyle={theme?.type == 'dark' ? 'light-content' : 'dark-content'}
-        backgroundColor={theme.BG_PRIMARY}
-      />
-      <NavigationContainer ref={navigationRef} theme={navigationTheme}
-        onReady={() => {
-          //@ts-ignore
-          routeNameRef.current = navigationRef.current?.getCurrentRoute()?.name;
-        }}
-        onStateChange={async () => {
-          const previousRouteName = routeNameRef.current;
-          //@ts-ignore
-          const currentRouteName = navigationRef.current?.getCurrentRoute()?.name;
+      <SafeAreaView style={{ flex: 1, backgroundColor: theme.BG_PRIMARY }}>
+        <StatusBar
+          barStyle={theme?.type == 'dark' ? 'light-content' : 'dark-content'}
+          backgroundColor={theme.BG_PRIMARY}
+        />
+        <NavigationContainer ref={navigationRef} theme={navigationTheme}
+          onReady={() => {
+            //@ts-ignore
+            routeNameRef.current = navigationRef.current?.getCurrentRoute()?.name;
+          }}
+          onStateChange={async () => {
+            const previousRouteName = routeNameRef.current;
+            //@ts-ignore
+            const currentRouteName = navigationRef.current?.getCurrentRoute()?.name;
 
-          //@ts-ignore
-          dispatch(updateNavigationState(navigationRef.current?.getCurrentRoute()))
+            //@ts-ignore
+            dispatch(updateNavigationState(navigationRef.current?.getCurrentRoute()))
 
-          if (previousRouteName !== currentRouteName) {
-            await analytics().logScreenView({
-              screen_name: currentRouteName,
-              screen_class: currentRouteName,
-            });
-          }
-          routeNameRef.current = currentRouteName;
-        }}>
-        <Stack.Navigator screenOptions={{
-          headerShown: false
-        }}>
-          <Stack.Screen name={ScreenConstants.TOP_TAB_STACK} component={TopTabNavigation} />
-          <Stack.Screen options={{ title: 'Details' }} name={ScreenConstants.DETAILS_SCREEN} component={DetailsScreen} />
-          <Stack.Screen name={ScreenConstants.THEME_SCREEN} component={ThemeScreen} />
-          <Stack.Screen name={ScreenConstants.CHAT_SCREEN} component={ChatScreen} />
-          <Stack.Screen name={ScreenConstants.SETTINGS_SCREEN} component={SettingsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaView>
+            if (previousRouteName !== currentRouteName) {
+              await analytics().logScreenView({
+                screen_name: currentRouteName,
+                screen_class: currentRouteName,
+              });
+            }
+            routeNameRef.current = currentRouteName;
+          }}>
+          <Stack.Navigator screenOptions={{
+            headerShown: false
+          }}>
+            <Stack.Screen name={ScreenConstants.TOP_TAB_STACK} component={TopTabNavigation} />
+            <Stack.Screen name={ScreenConstants.THEME_SCREEN} component={ThemeScreen} />
+            <Stack.Screen name={ScreenConstants.CHAT_SCREEN} component={ChatScreen} />
+            <Stack.Screen name={ScreenConstants.SETTINGS_SCREEN} component={SettingsScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
     </BottomSheetModalProvider>
   );
 };

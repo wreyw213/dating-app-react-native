@@ -9,9 +9,9 @@ import MessagesScreen from "../containers/MessagesScreen";
 import BottomBar from "../library/components/BottomBar";
 import ScreenConstants from "../library/constants/ScreenConstants";
 
-type Props = DrawerScreenProps<any> & { topTabNavigation: MaterialTopTabNavigationProp<any> }
+type Props = DrawerScreenProps<any> & { navigation: MaterialTopTabNavigationProp<any> }
 
-const BottomTab: FC<Props> = ({ topTabNavigation }) => {
+const BottomTab: FC<Props> = ({ navigation }) => {
   const Tab = createBottomTabNavigator();
 
   return (
@@ -29,7 +29,7 @@ const BottomTab: FC<Props> = ({ topTabNavigation }) => {
       <Tab.Screen
         name={ScreenConstants.FEED_SCREEN}
         children={Props => (
-          <FeedScreen {...Props} topTabNavigation={topTabNavigation} />
+          <FeedScreen {...Props} topTabNavigation={navigation} />
         )}
       />
     </Tab.Navigator>

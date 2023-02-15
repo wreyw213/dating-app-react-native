@@ -5,8 +5,7 @@ import { AppState, AppStateStatus, FlatList, LayoutChangeEvent, View } from "rea
 import FlatItem from "./components/FlatItem";
 import data from './utils/apidata.json'
 import { cellHeight } from "./utils/constants";
-import { useIsFocused, useNavigationState } from "@react-navigation/native";
-import { useDrawerStatus } from '@react-navigation/drawer';
+import { useIsFocused } from "@react-navigation/native";
 import { MaterialTopTabNavigationProp } from "@react-navigation/material-top-tabs";
 import useTheme from "../../library/hooks/useTheme";
 
@@ -17,20 +16,11 @@ let currentIndex = 0;
 
 const FeedScreen: React.FC<Props> = ({ navigation, topTabNavigation }) => {
 	const isFoucused = useIsFocused()
-	const isDrawerOpen = useDrawerStatus() === 'open';
 	const [theme] = useTheme()
 
 	const flatListRef = useRef<FlatList>(null);
 	const [heightOfView, setHeight] = useState(cellHeight)
 
-	useEffect(() => {
-		if (isDrawerOpen) {
-			pauseCurrentItem()
-		} else {
-			playCurrentItem()
-		}
-
-	}, [isDrawerOpen])
 
 	useEffect(() => {
 		let listerner: () => void;

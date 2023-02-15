@@ -7,12 +7,13 @@ import {
   ViewStyle,
   TextStyle,
   Text,
+  TextInputProps,
 } from 'react-native';
 import useTheme from '../hooks/useTheme';
 import { Theme } from '../types';
 import DimensionsValue from '../utils/DimensionsValue';
 
-interface Props {
+interface Props extends TextInputProps {
   placeholder?: string;
   renderRightIcon?: any;
   renderLeftIcon?: any;

@@ -33,11 +33,7 @@ const DrawerStack: React.FC<Props> = ({ navigation }) => {
     >
         <Drawer.Screen
             name={ScreenConstants.BOTTOM_STACk}
-            // component={BottomTab} 
-            children={(Props) => <BottomTab
-                {...Props}
-                topTabNavigation={navigation}
-            />}
+            component={BottomTab}
         />
         {/* <Drawer.Screen name="HomeSCREEN" component={HomeScreen} /> */}
         <Drawer.Screen name={ScreenConstants.NOTIFICATION_SCREEN} component={NotificationsScreen} />

@@ -37,4 +37,15 @@ export default {
   DEFAULT_AVATAR: require('./no_avatar.png'),
   IC_PLUS_ROUND: require('./ic_plus_add.png'),
   IC_GEAR: require('./ic_gear.png'),
+
+  IC_BELL: require('./ic_bell.png'),
+  IC_LOCK: require('./ic_lock.png'),
+  IC_INFO: require('./ic_info.png'),
+  IC_HELP: require('./ic_help.png'),
+  IC_DARK: require('./ic_dark.png'),
+  IC_CONTRACT: require('./ic_contract.png'),
+  IC_FEEDBACK: require('./ic_feedback.png'),
+  IC_AGREEMENT: require('./ic_agreement.png'),
+  IC_SHIELD: require('./ic_shield.png'),
+  IC_LOGOUT: require('./ic_logout.png')
 };
