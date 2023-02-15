@@ -1,11 +1,11 @@
-import React, {FC, useCallback, useMemo, useRef, useState} from 'react';
-import {DrawerScreenProps} from '@react-navigation/drawer';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import { View} from 'react-native';
-import CardStack, {Card} from 'react-native-card-stack-swiper';
+import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
+import { DrawerScreenProps } from '@react-navigation/drawer';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { View } from 'react-native';
+import CardStack, { Card } from 'react-native-card-stack-swiper';
 import { useDispatch } from 'react-redux';
-import {BottomSheetModal} from '@gorhom/bottom-sheet';
-import {BottomSheetModalMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetModalMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 
 import CardItem from './components/CardItem';
 import Demo from './assets/data/demo.js';
@@ -17,11 +17,10 @@ import useTheme from '../../library/hooks/useTheme';
 import styles from './styles';
 import { Text } from 'react-native';
 import { Colors } from '../../library/constants';
-import BottomSheetHandlerComponent from './components/BottomSheetHandlerComponent';
 
 type Props = NativeStackScreenProps<any> & DrawerScreenProps<any>;
 
-const Home: FC<Props> = ({navigation}) => {
+const Home: FC<Props> = ({ navigation }) => {
   const [theme] = useTheme();
   const dispatch = useDispatch();
 
@@ -39,11 +38,11 @@ const Home: FC<Props> = ({navigation}) => {
   }, []);
 
   const handlePresentModalPress = useCallback(() => {
-   if (!isVisiable) {
-     bottomSheetModalRef.current?.present()
-   } else {
-    handleCloseModalPress()
-   }
+    if (!isVisiable) {
+      bottomSheetModalRef.current?.present()
+    } else {
+      handleCloseModalPress()
+    }
   }, [isVisiable]);
 
   const handleCloseModalPress = useCallback(() => {
@@ -55,7 +54,7 @@ const Home: FC<Props> = ({navigation}) => {
       <Header
         title="Discover"
         rightIcon={images.IC_FILTER}
-        titleStyle={{fontWeight: '600'}}
+        titleStyle={{ fontWeight: '600' }}
         showRightIcon={true}
         tapOnRightIcon={handlePresentModalPress}
         rightIconStyle={styles(theme).imageHeaderProfile}
@@ -117,9 +116,10 @@ const Home: FC<Props> = ({navigation}) => {
         handleStyle={{
           borderRadius: 100,
         }}
-        handleComponent={() => <BottomSheetHandlerComponent theme={theme} />}
         backgroundStyle={{
-          backgroundColor:Colors.TRANSPARENT,
+          backgroundColor: `${theme.BG_PRIMARY}FF`,
+          borderTopLeftRadius: DimensionsValue.VALUE_30,
+          borderTopRightRadius: DimensionsValue.VALUE_30,
         }}>
         <FiltersModal
           handleCallBack={(data: any) => {

@@ -1,9 +1,9 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Colors } from '../../../library/constants';
 import { Theme } from '../../../library/types';
 import DimensionsValue from '../../../library/utils/DimensionsValue';
 
-const {WHITE,DARK_GRAY,BLACK,GRAY,YELLOW,LIKE_ACTIONS,FLASH_ACTIONS,PRIMARY_BUTTON,SECONDARY_BUTTON} = Colors
+const { WHITE, DARK_GRAY, BLACK, GRAY, YELLOW, LIKE_ACTIONS, FLASH_ACTIONS, PRIMARY_BUTTON, SECONDARY_BUTTON } = Colors
 
 const DIMENSION_WIDTH = Dimensions.get('window').width;
 const DIMENSION_HEIGHT = Dimensions.get('window').height;
@@ -19,7 +19,7 @@ const styles = (theme: Theme) =>
       shadowOpacity: 0.05,
       shadowRadius: DimensionsValue.VALUE_10,
       shadowColor: BLACK,
-      shadowOffset: {height: 0, width: 0},
+      shadowOffset: { height: 0, width: 0 },
     },
     matchesCardItem: {
       marginTop: -DimensionsValue.VALUE_40,
@@ -61,7 +61,7 @@ const styles = (theme: Theme) =>
       shadowOpacity: 0.15,
       shadowRadius: DimensionsValue.VALUE_20,
       shadowColor: DARK_GRAY,
-      shadowOffset: {height: DimensionsValue.VALUE_10, width: 0},
+      shadowOffset: { height: DimensionsValue.VALUE_10, width: 0 },
     },
     miniButton: {
       width: DimensionsValue.VALUE_40,
@@ -74,20 +74,20 @@ const styles = (theme: Theme) =>
       shadowOpacity: 0.15,
       shadowRadius: DimensionsValue.VALUE_20,
       shadowColor: DARK_GRAY,
-      shadowOffset: {height: DimensionsValue.VALUE_10, width: 0},
+      shadowOffset: { height: DimensionsValue.VALUE_10, width: 0 },
     },
     imageActions: {
       width: DimensionsValue.VALUE_20,
       height: DimensionsValue.VALUE_20,
     },
     imageDisLike: {
-      transform: [{rotate: '45 deg'}],
-      tintColor:theme.TXT_PRIMARY
+      transform: [{ rotate: '45 deg' }],
+      tintColor: theme.TXT_PRIMARY
     },
 
     //Filters Component
 
-    
+
   });
 
-  export default styles
+export default styles

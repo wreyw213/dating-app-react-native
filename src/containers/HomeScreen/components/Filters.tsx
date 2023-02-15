@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Text,
   View,
@@ -11,10 +11,10 @@ import {
 import Button from '../../../library/components/Button';
 import ImageButton from '../../../library/components/ImageButton';
 import RangeSlider from '../../../library/components/RangeSlider';
-import {Colors} from '../../../library/constants';
+import { Colors } from '../../../library/constants';
 import useTheme from '../../../library/hooks/useTheme';
 import images from '../../../library/resources/images';
-import {Theme} from '../../../library/types';
+import { Theme } from '../../../library/types';
 import DimensionsValue from '../../../library/utils/DimensionsValue';
 import GenderButton from './GenderButton';
 
@@ -22,24 +22,24 @@ type Props = {
   data?: any;
   handleCallBack: (data: any) => void;
 };
-const FiltersModal = ({data, handleCallBack}: Props) => {
+const FiltersModal = ({ data, handleCallBack }: Props) => {
   const [theme] = useTheme();
 
   const [intereset, setInterest] = useState(0);
-  const [values, setValues] = useState({low: 40, high: 50});
-  const [ageRange, setAgeRange] = useState({low: 18, high: 50});
+  const [values, setValues] = useState({ low: 40, high: 50 });
+  const [ageRange, setAgeRange] = useState({ low: 18, high: 50 });
 
 
   const onPressClear = () => {
-    setValues({low:40,high:50})
-    setAgeRange({low: 18, high: 50});
+    setValues({ low: 40, high: 50 })
+    setAgeRange({ low: 18, high: 50 });
     setInterest(0)
   }
   return (
     <View style={styles(theme).containerCardItem}>
       <View style={styles(theme).topContainer}>
-        <View style={{flex: 1}} />
-        <View style={{flex: 1, alignItems: 'center'}}>
+        <View style={{ flex: 1 }} />
+        <View style={{ flex: 1, alignItems: 'center' }}>
           <Text style={styles(theme).textFilters}>Filters</Text>
         </View>
         <ImageButton
@@ -62,7 +62,7 @@ const FiltersModal = ({data, handleCallBack}: Props) => {
       <RangeSlider
         min={0}
         max={150}
-        setValues={(low, high) => setValues({low, high})}
+        setValues={(low, high) => setValues({ low, high })}
         values={values}
         rangeDisabled={true}
         step={5}
@@ -77,7 +77,7 @@ const FiltersModal = ({data, handleCallBack}: Props) => {
       <RangeSlider
         min={16}
         max={50}
-        setValues={(low, high) => setAgeRange({low, high})}
+        setValues={(low, high) => setAgeRange({ low, high })}
         values={ageRange}
         rangeDisabled={false}
         theme={theme}
@@ -86,7 +86,7 @@ const FiltersModal = ({data, handleCallBack}: Props) => {
       <Button
         title="Continue"
         onPress={() => {
-          handleCallBack({range: 40, age: 20, interest: 'girl'});
+          handleCallBack({ range: 40, age: 20, interest: 'girl' });
         }}
         textStyle={styles(theme).textContinue}
         containerStyle={styles(theme).buttonContainer}
@@ -101,7 +101,7 @@ const styles = (theme: Theme) =>
   StyleSheet.create({
     containerCardItem: {
       flex: 1,
-      backgroundColor: `${theme.BG_PRIMARY}FF`,
+
       paddingHorizontal: DimensionsValue.VALUE_30,
     },
     topContainer: {

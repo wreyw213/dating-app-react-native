@@ -1,5 +1,6 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
+import { View } from 'react-native';
 import {
   TouchableOpacity,
   Image,
@@ -7,6 +8,7 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppConstants, Colors } from '../constants';
 import useIsKeyboardShown from '../hooks/useIsKeyboardShown';
 import useTheme from '../hooks/useTheme';
@@ -31,8 +33,10 @@ const BottomBar = (Props: BottomTabBarProps) => {
 
 const RenderBottomBar = ({ state, navigation }: BottomTabBarProps) => {
   const [theme] = useTheme();
+  const safeArea = useSafeAreaInsets();
+
   return (
-    <SafeAreaView style={styles(theme).viewContainer}>
+    <View style={[styles(theme).viewContainer, { marginBottom: safeArea.bottom }]}>
       {AppConstants.MAIN_STACK.map((elem: any, index: number) => {
         const isFocused = state.index == index;
         return (
@@ -40,7 +44,6 @@ const RenderBottomBar = ({ state, navigation }: BottomTabBarProps) => {
             style={{
               flex: 1,
               alignItems: 'center',
-              marginVertical: DimensionsValue.VALUE_20,
             }}
             key={index}
             onPress={() =>
@@ -58,7 +61,7 @@ const RenderBottomBar = ({ state, navigation }: BottomTabBarProps) => {
           </TouchableOpacity>
         );
       })}
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -69,9 +72,11 @@ const styles = (theme: Theme) =>
     viewContainer: {
       flexDirection: 'row',
       alignItems: 'center',
+      justifyContent: 'center',
     },
     image: {
       width: DimensionsValue.VALUE_20,
       height: DimensionsValue.VALUE_20,
+      marginTop: DimensionsValue.VALUE_20
     },
   });
