@@ -25,12 +25,16 @@ platform :ios, min_ios_version_supported
   pod 'GoogleUtilities', :modular_headers => true
   pod 'FirebaseCore', :modular_headers => true
 
+  # $RNGoogleMobileAdsAsStaticFramework = true
+  # $RNFirebaseAsStaticFramework = true
 
 target 'TypeScriptDemo' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
   flags = get_default_flags()
+  # use_frameworks! :linkage => :static
+
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -60,13 +64,7 @@ target 'TypeScriptDemo' do
       # necessary for Mac Catalyst builds
       :mac_catalyst_enabled => false
     )
-    # installer.pods_project.targets.each do |target|
-    #   target.build_configurations.each do |config|
-    #     if Gem::Version.new('11.0') >= Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
-    #       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.1'
-    #     end
-    #   end
-    # end
+    
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end

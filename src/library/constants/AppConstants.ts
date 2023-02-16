@@ -6,19 +6,24 @@ export default {
   TOKEN: 'token',
 
   MAIN_STACK: [
-    {image: images.IC_FIND, screenName: ScreenConstants.HOME_SCREEN},
-    {image: images.IC_CHAT, screenName: ScreenConstants.MESSAGES_SCREEN},
+    { image: images.IC_FIND, screenName: ScreenConstants.HOME_SCREEN },
+    { image: images.IC_CHAT, screenName: ScreenConstants.MESSAGES_SCREEN },
     {
       image: images.IC_HEART_SMALL,
       screenName: ScreenConstants.MATCHES_SCREEN,
     },
-    {image: images.IC_PLAY_BUTTON, screenName: ScreenConstants.FEED_SCREEN},
+    { image: images.IC_PLAY_BUTTON, screenName: ScreenConstants.FEED_SCREEN },
   ],
 
-  HITSLOP_SMALL:{
+  HITSLOP_SMALL: {
     top: 20,
     left: 10,
     bottom: 10,
     right: 10,
-  }
+  },
+
+  IOS_ADD_ID: 'ca-app-pub-3409347172641481/7254791990',
+
+  ANDROID_ADD_ID: 'ca-app-pub-3409347172641481/8515902776',
+
 };

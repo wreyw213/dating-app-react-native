@@ -9,7 +9,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { SafeAreaView, StatusBar, Text, useColorScheme, View } from 'react-native';
+import { Platform, SafeAreaView, StatusBar, Text, useColorScheme, View } from 'react-native';
 
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 
@@ -28,6 +28,7 @@ import ThemeScreen from './src/containers/ThemeScreen';
 import ChatScreen from './src/containers/ChatScreen';
 import SettingsScreen from './src/containers/SettingsScreen';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import AddMobComponent from './src/library/components/AddMobComponent';
 
 
 
@@ -60,6 +61,7 @@ const App = () => {
   return (
     <BottomSheetModalProvider>
       <SafeAreaView style={{ flex: 1, backgroundColor: theme.BG_PRIMARY }}>
+        <AddMobComponent />
         <StatusBar
           barStyle={theme?.type == 'dark' ? 'light-content' : 'dark-content'}
           backgroundColor={theme.BG_PRIMARY}
@@ -91,7 +93,6 @@ const App = () => {
             <Stack.Screen name={ScreenConstants.TOP_TAB_STACK} component={TopTabNavigation} />
             <Stack.Screen name={ScreenConstants.THEME_SCREEN} component={ThemeScreen} />
             <Stack.Screen name={ScreenConstants.CHAT_SCREEN} component={ChatScreen} />
-            <Stack.Screen name={ScreenConstants.SETTINGS_SCREEN} component={SettingsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
