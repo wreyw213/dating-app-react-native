@@ -21,9 +21,9 @@ const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
 
 
 const AddMobComponent = () => {
-  const { addMobData } = useSelector(state => state) as RootState
-  const [count, startCount, stopCount] = useTimer();
-  const dispatch = useDispatch() as AppDispatch;
+    const {addMobData} = useSelector(state=>state) as RootState
+    const [count,startCount,stopCount] = useTimer(AppConstants.AD_TIME_OUT);
+    const dispatch = useDispatch() as AppDispatch;
 
   useEffect(() => {
     interstitial.load()
@@ -35,6 +35,13 @@ const AddMobComponent = () => {
       if (typeof startCount == 'function') startCount();
       dispatch(updateLoadedState(true))
     });
+
+    const unSubscribeErrAdd = interstitial.addAdEventListener(AdEventType.ERROR, (err) => {
+      console.log("Error while Loading Error=>>>",err);
+      setTimeout(()=>{
+        interstitial.load();
+      },120000)
+    })
 
     const unSubscribeShowAdd = interstitial.addAdEventListener(AdEventType.OPENED, () => {
       console.log("add showing");
@@ -51,9 +58,7 @@ const AddMobComponent = () => {
     })
 
     return () => {
-      unsubscribe()
-      unSubscribeShowAdd()
-      unSubscribeHiddenAdd()
+      interstitial.removeAllListeners();
       if (typeof stopCount == 'function') stopCount()
     }
 

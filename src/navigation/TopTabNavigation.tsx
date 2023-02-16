@@ -13,7 +13,8 @@ type Props = NativeStackScreenProps<any>
 const TopTabNavigation: FC<Props> = () => {
   const Tab = createMaterialTopTabNavigator();
 
-  const { currentNavigationState: { data } } = useSelector((state => state)) as RootState
+    const { currentNavigationState: { data } } = useSelector((state => state)) as RootState
+
 
   const enabledRoutes = [
     ScreenConstants.FEED_SCREEN,
