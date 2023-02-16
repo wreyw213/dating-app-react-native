@@ -2,19 +2,19 @@ import React from 'react';
 
 
 const useTimer = () => {
-    const [time,setTime] = React.useState(0);
-    const [show,setShow] = React.useState(false)
+	const [time, setTime] = React.useState(0);
+	const [show, setShow] = React.useState(false)
 
-    console.log("useTimer=>>>",time,show)
-    React.useEffect(() => {
-      if (!show) return;
+	console.log("useTimer=>>>", time, show)
+	React.useEffect(() => {
+		if (!show) return;
 
-      setTimeout(() => {
-        setTime((prev) => prev < 5 ? prev + 1 : 1);
-      }, 6000);
-    }, [time, show]);
+		setTimeout(() => {
+			setTime((prev) => prev < 5 ? prev + 1 : 1);
+		}, 60000);
+	}, [time, show]);
 
-    return [time, () => setShow(true), () => setShow(false)];
+	return [time, () => setShow(true), () => setShow(false)];
 }
 
 export default useTimer
