@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const useTimer = () => {
+const useTimer = (delay:number) => {
     const [time,setTime] = React.useState(0);
     const [show,setShow] = React.useState(false)
 
@@ -11,7 +11,7 @@ const useTimer = () => {
 
       setTimeout(() => {
         setTime((prev) => prev < 5 ? prev + 1 : 1);
-      }, 6000);
+      }, delay);
     }, [time, show]);
 
     return [time, () => setShow(true), () => setShow(false)];

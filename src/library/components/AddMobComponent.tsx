@@ -21,7 +21,7 @@ const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
 
 const AddMobComponent = () => {
     const {addMobData} = useSelector(state=>state) as RootState
-    const [count,startCount,stopCount] = useTimer();
+    const [count,startCount,stopCount] = useTimer(AppConstants.AD_TIME_OUT);
     const dispatch = useDispatch() as AppDispatch;
 
     useEffect(() => {

@@ -17,7 +17,6 @@ const TopTabNavigation: FC<Props> = () => {
 
     const { currentNavigationState: { data } } = useSelector((state => state)) as RootState
 
-    console.log("route++++++++++++++++", data)
 
     const enabledRoutes = [
       ScreenConstants.FEED_SCREEN,
