@@ -23,9 +23,9 @@ const styles = (theme: Theme) => StyleSheet.create({
     },
     video: {
         position: 'absolute',
-        top: 0,
+        top: 5,
         right: 0,
-        bottom: 0,
+        bottom: 5,
         left: 0,
         backgroundColor: theme.BG_PRIMARY
     },

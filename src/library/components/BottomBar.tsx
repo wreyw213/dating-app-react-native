@@ -4,7 +4,6 @@ import { View } from 'react-native';
 import {
   TouchableOpacity,
   Image,
-  SafeAreaView,
   Platform,
   StyleSheet,
 } from 'react-native';
@@ -36,7 +35,7 @@ const RenderBottomBar = ({ state, navigation }: BottomTabBarProps) => {
   const safeArea = useSafeAreaInsets();
 
   return (
-    <View style={[styles(theme).viewContainer, { marginBottom: safeArea.bottom }]}>
+    <View style={[styles(theme).viewContainer, { paddingTop: DimensionsValue.VALUE_20 }]}>
       {AppConstants.MAIN_STACK.map((elem: any, index: number) => {
         const isFocused = state.index == index;
         return (
@@ -77,6 +76,5 @@ const styles = (theme: Theme) =>
     image: {
       width: DimensionsValue.VALUE_20,
       height: DimensionsValue.VALUE_20,
-      marginTop: DimensionsValue.VALUE_20
     },
   });

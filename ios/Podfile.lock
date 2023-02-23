@@ -123,9 +123,6 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - Google-Mobile-Ads-SDK (9.14.0):
-    - GoogleAppMeasurement (< 11.0, >= 7.0)
-    - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (10.5.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.5.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
@@ -150,7 +147,6 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUserMessagingPlatform (2.0.0)
   - GoogleUtilities (7.11.0):
     - GoogleUtilities/AppDelegateSwizzler (= 7.11.0)
     - GoogleUtilities/Environment (= 7.11.0)
@@ -589,11 +585,7 @@ PODS:
     - RNFBApp
   - RNGestureHandler (2.8.0):
     - React-Core
-  - RNGoogleMobileAds (9.1.1):
-    - Google-Mobile-Ads-SDK (= 9.14.0)
-    - GoogleUserMessagingPlatform (= 2.0.0)
-    - React-Core
-  - RNReanimated (2.13.0):
+  - RNReanimated (2.14.4):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -712,7 +704,6 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNGoogleMobileAds (from `../node_modules/react-native-google-mobile-ads`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -737,10 +728,8 @@ SPEC REPOS:
     - Flipper-RSocket
     - FlipperKit
     - fmt
-    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
-    - GoogleUserMessagingPlatform
     - GoogleUtilities
     - KTVCocoaHTTPServer
     - KTVHTTPCache
@@ -851,8 +840,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/crashlytics"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNGoogleMobileAds:
-    :path: "../node_modules/react-native-google-mobile-ads"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -884,10 +871,8 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  Google-Mobile-Ads-SDK: 4fe6304b771f8467d29978cb790ec1e56e646946
   GoogleAppMeasurement: 40c70a7d89013f0eca72006c4b9732163ea4cdae
   GoogleDataTransport: ea169759df570f4e37bdee1623ec32a7e64e67c4
-  GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
   hermes-engine: 6351580c827b3b03e5f25aadcf989f582d0b0a86
   KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
@@ -939,8 +924,7 @@ SPEC CHECKSUMS:
   RNFBApp: 72689120614e575a3be05328c5b3235666511054
   RNFBCrashlytics: b2f8c42fc7c96fa379a8d0675d11ba8c26d631e1
   RNGestureHandler: 62232ba8f562f7dea5ba1b3383494eb5bf97a4d3
-  RNGoogleMobileAds: 17d3783e4933e48e7c1f46afb29a66e835444d59
-  RNReanimated: d8d9d3d3801bda5e35e85cdffc871577d044dc2e
+  RNReanimated: cc5e3aa479cb9170bcccf8204291a6950a3be128
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
@@ -948,6 +932,6 @@ SPEC CHECKSUMS:
   Yoga: 5b0304b3dbef2b52e078052138e23a19c7dacaef
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: aea93011da00153ce5d26eb8d532c3296f1ef978
+PODFILE CHECKSUM: b09fc8daee8798efd42b9c9d9808d72cf3270608
 
 COCOAPODS: 1.11.3

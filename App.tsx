@@ -29,6 +29,7 @@ import ChatScreen from './src/containers/ChatScreen';
 import SettingsScreen from './src/containers/SettingsScreen';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import AddMobComponent from './src/library/components/AddMobComponent';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 
@@ -60,42 +61,44 @@ const App = () => {
 
   return (
     <BottomSheetModalProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: theme.BG_PRIMARY }}>
-        <AddMobComponent />
-        <StatusBar
-          barStyle={theme?.type == 'dark' ? 'light-content' : 'dark-content'}
-          backgroundColor={theme.BG_PRIMARY}
-        />
-        <NavigationContainer ref={navigationRef} theme={navigationTheme}
-          onReady={() => {
-            //@ts-ignore
-            routeNameRef.current = navigationRef.current?.getCurrentRoute()?.name;
-          }}
-          onStateChange={async () => {
-            const previousRouteName = routeNameRef.current;
-            //@ts-ignore
-            const currentRouteName = navigationRef.current?.getCurrentRoute()?.name;
+      <SafeAreaProvider>
+        <SafeAreaView style={{ flex: 1, backgroundColor: theme.BG_PRIMARY }}>
+          {/* <AddMobComponent /> */}
+          <StatusBar
+            barStyle={theme?.type == 'dark' ? 'light-content' : 'dark-content'}
+            backgroundColor={theme.BG_PRIMARY}
+          />
+          <NavigationContainer ref={navigationRef} theme={navigationTheme}
+            onReady={() => {
+              //@ts-ignore
+              routeNameRef.current = navigationRef.current?.getCurrentRoute()?.name;
+            }}
+            onStateChange={async () => {
+              const previousRouteName = routeNameRef.current;
+              //@ts-ignore
+              const currentRouteName = navigationRef.current?.getCurrentRoute()?.name;
 
-            //@ts-ignore
-            dispatch(updateNavigationState(navigationRef.current?.getCurrentRoute()))
+              //@ts-ignore
+              dispatch(updateNavigationState(navigationRef.current?.getCurrentRoute()))
 
-            if (previousRouteName !== currentRouteName) {
-              await analytics().logScreenView({
-                screen_name: currentRouteName,
-                screen_class: currentRouteName,
-              });
-            }
-            routeNameRef.current = currentRouteName;
-          }}>
-          <Stack.Navigator screenOptions={{
-            headerShown: false
-          }}>
-            <Stack.Screen name={ScreenConstants.TOP_TAB_STACK} component={TopTabNavigation} />
-            <Stack.Screen name={ScreenConstants.THEME_SCREEN} component={ThemeScreen} />
-            <Stack.Screen name={ScreenConstants.CHAT_SCREEN} component={ChatScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaView>
+              if (previousRouteName !== currentRouteName) {
+                await analytics().logScreenView({
+                  screen_name: currentRouteName,
+                  screen_class: currentRouteName,
+                });
+              }
+              routeNameRef.current = currentRouteName;
+            }}>
+            <Stack.Navigator screenOptions={{
+              headerShown: false,
+            }}>
+              <Stack.Screen name={ScreenConstants.TOP_TAB_STACK} component={TopTabNavigation} />
+              <Stack.Screen name={ScreenConstants.THEME_SCREEN} component={ThemeScreen} />
+              <Stack.Screen name={ScreenConstants.CHAT_SCREEN} component={ChatScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaView>
+      </SafeAreaProvider>
     </BottomSheetModalProvider>
   );
 };
